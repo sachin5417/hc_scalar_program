@@ -17,13 +17,16 @@ public class CustomQueue {
 	}
 
 	int enqueue(int data) {
+
 		return object[++end] = data;
 	}
 
-	int dequeue() {
+	int dequeue() throws DataStructureException {
 		if (isEmpty()) {
-			System.out.println("QUeue is Empty");
+			throw new DataStructureException("Queue is Empty");
 		}
+		// System.out.println("Queue is Empty");
+
 		if (end >= front) {
 			return object[++front];
 		}

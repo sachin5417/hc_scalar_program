@@ -94,7 +94,7 @@ public class CustomLinkedList {
 		return node;
 	}
 
-	private int deleteLast() {
+	public int deleteLast() {
 		if (size <= 1) {
 			return deleteFirst();
 		}
@@ -105,7 +105,7 @@ public class CustomLinkedList {
 		return val;
 	}
 
-	private int deleteFirst() {
+	public int deleteFirst() {
 		int val = head.getData();
 		head = head.getNext();
 		if (head == null) {
@@ -115,20 +115,65 @@ public class CustomLinkedList {
 		return val;
 	}
 
-	public boolean insertAtPosition(int element, int givenElement) {
-		boolean response = false;
+//	public void insertAtPosition(int index, int element) {
+//		boolean response = false;
+//		Node temp = head;
+//		while (temp != null) {
+//			if (temp.getData() == givenElement) {
+//				break;
+//			}
+//			temp = temp.getNext();
+//		}
+//		if (temp != null) {
+//			Node node = new Node(element);
+//		}
+//		return response;
+//		if (head == null) {
+//			addFirst(element);
+//			return;
+//		}
+//		if (index == size) {
+//			addLast(element);
+//			return;
+//		}
+//		Node temp = head;
+//		for (int i = 0; i < index; i++) {
+//			temp = temp.next;
+//		}
+//		Node node = new Node(element, temp.next);
+//		node.next = head;
+//		temp.next = node;
+//		System.out.println("!$^#######");
+//		size++;
+//	}
+//
+	public void display() {
 		Node temp = head;
 		while (temp != null) {
-			if (temp.getData() == givenElement) {
-				break;
-			}
-			temp = temp.getNext();
+			System.out.print(temp.data + " -->");
+			temp = temp.next;
 		}
-		if (temp != null) {
-			Node node = new Node(element);
+	}
+
+	public void add(int data) {
+		Node node = new Node(data);
+		if (head == null) {
+			head = node;
+			tail = head;
+		} else {
+			tail.next = node;
+			tail = tail.next;
 		}
-		return response;
+		tail.next = null;
 
 	}
 
+//	public static void main(String[] args) {
+//		CustomLinkedList cl = new CustomLinkedList();
+//		cl.add(7);
+//		cl.add(90);
+//		cl.add(45);
+//		cl.display();
+//
+//	}
 }

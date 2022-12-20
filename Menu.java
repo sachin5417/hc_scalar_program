@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Menu extends MenuItem {
 
 	private List<MenuItem> item = new ArrayList<MenuItem>();
+	// private TreeSet<MenuItem> item = new TreeSet<>();
 	private static boolean isLevelOne = true;
 
 	public Menu(String title) {
@@ -30,6 +31,9 @@ public class Menu extends MenuItem {
 	public List<MenuItem> getMenuItem() {
 		return item;
 	}
+//	public TreeSet<MenuItem> getMenuItem() {
+//		return item;
+//	}
 
 	public void display() {
 		if (isLevelOne) {
@@ -43,6 +47,7 @@ public class Menu extends MenuItem {
 			} else {
 				MenuItem mi = getMenuItem().stream().filter(menuItem -> menuItem.getOrder() == choice).findFirst()
 						.orElse(null);
+
 				if (mi == null) {
 					System.out.println("Invalid choice");
 					display();
@@ -82,7 +87,11 @@ public class Menu extends MenuItem {
 			break;
 
 		case "display":
-			Application.array.display();
+			try {
+				Application.array.display();
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
+			}
 			back();
 			break;
 		}
@@ -92,13 +101,23 @@ public class Menu extends MenuItem {
 		switch (operationName) {
 		case "push()":
 			System.out.println("Enter data: ");
-			int data = new Scanner(System.in).nextInt();
-			Application.stack.push(data);
+			try {
+				int data = new Scanner(System.in).nextInt();
+				Application.stack.push(data);
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
+			}
+
 			back();
 			break;
 
 		case "pop()":
-			System.out.println("element popped: " + Application.stack.pop());
+			try {
+				System.out.println("element popped: " + Application.stack.pop());
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
+			}
+
 			back();
 			break;
 
@@ -121,7 +140,11 @@ public class Menu extends MenuItem {
 			break;
 
 		case "dequeue()":
-			System.out.println("element popped: " + Application.queue.dequeue());
+			try {
+				System.out.println("element popped: " + Application.queue.dequeue());
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
+			}
 			back();
 			break;
 
@@ -136,20 +159,26 @@ public class Menu extends MenuItem {
 
 	private void callLinkedListOperation(String operationName) {
 		switch (operationName) {
-		case "InsertAtPosition()":
+		case "Add()":
 			System.out.println("Enter data: ");
 			int data = new Scanner(System.in).nextInt();
-			Application.queue.enqueue(data);
+			Application.linkedlist.add(data);
 			back();
 			break;
 
 		case "delete()":
-			System.out.println("element popped: " + Application.queue.dequeue());
+			Application.linkedlist.deleteFirst();
 			back();
 			break;
 
-		case "Travarse()":
-			System.out.println("Top Element: " + Application.queue.front());
+		case "Traverse()":
+			Application.linkedlist.traverse();
+			back();
+			break;
+
+		case "Display()":
+			System.out.println("Elements in LinkedList are: ");
+			Application.linkedlist.display();
 			back();
 			break;
 

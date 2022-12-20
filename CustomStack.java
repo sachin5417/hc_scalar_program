@@ -19,18 +19,24 @@ public class CustomStack {
 		return top == capacity - 1;
 	}
 
-	public int push(int data) {
+	public int push(int data) throws DataStructureException {
 		if (isFull()) {
-			System.out.println("Stack is Full");
+			throw new DataStructureException("Stack is Full");
+			// System.out.println("Stack is Full");
+		} else {
+			return stack[++top] = data;
 		}
-		return stack[++top] = data;
+
 	}
 
-	public int pop() {
+	public int pop() throws DataStructureException {
 		if (isEmpty()) {
-			System.out.println("Stack is Empty");
+			throw new DataStructureException("Stack is Empty");
+			// System.out.println("Stack is Empty");
+		} else {
+			return stack[top--];
 		}
-		return stack[top--];
+
 	}
 
 	public int peek() {

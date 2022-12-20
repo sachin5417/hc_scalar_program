@@ -38,11 +38,15 @@ public class ArrayDs<T> {
 
 	}
 
-	public void display() {
-		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
+	public void display() throws DataStructureException {
+		if (size <= 0) {
+			throw new DataStructureException("No Elements found");
+		} else {
+			for (int i = 0; i < data.length; i++) {
+				System.out.println("elements in array= " + data[i]);
+			}
+
 		}
 
 	}
-
 }
